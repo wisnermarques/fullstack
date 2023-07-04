@@ -2,6 +2,7 @@ import React from "react";
 import Hello from "./Hello";
 import Footer from "./Footer";
 import Contador from "./Contador";
+import ContaCliques from "./ContaCliques";
 
 const App = () => {
   const hoje = new Date().toLocaleString();
@@ -21,6 +22,8 @@ const App = () => {
       <Footer />
       <hr />
       <Contador />
+      <hr />
+      <ContaCliques />
     </div>
   );
 };

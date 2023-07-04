@@ -1,7 +1,7 @@
 import React from "react";
 
-const Botao = (props) => {
-  return <button onClick={props.onClick}>{props.texto}</button>;
-};
+const Botao = ({ onClick, texto }) => (
+  <button onClick={onClick}>{texto}</button>
+);
 
 export default Botao;
