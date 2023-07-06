@@ -1,13 +1,13 @@
 const baseUrl = "http://localhost:3001/notes";
 
 const getAll = () => {
-  const data = fetch(baseUrl, {
+  const response = fetch(baseUrl, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
-  }).then((response) => response.json());
-  return data;
+  }).then((resp) => resp.json());
+  return response;
 };
 
 const create = (newObject) => {
