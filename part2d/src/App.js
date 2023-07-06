@@ -36,7 +36,11 @@ const App = (props) => {
 
     noteService
       .update(id, changedNote)
-      .then((data) => setNotes(notes.map((n) => (n.id !== id ? n : data))));
+      .then((data) => setNotes(notes.map((n) => (n.id !== id ? n : data))))
+      .catch((error) => {
+        alert(`the note '${note.content}' was already deleted from server`);
+        setNotes(notes.filter((n) => n.id !== id));
+      });
   };
 
   const notesToShow = showAll
