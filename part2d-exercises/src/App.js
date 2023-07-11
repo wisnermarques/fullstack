@@ -13,6 +13,7 @@ const App = () => {
   const [newNumber, setNewNumber] = useState("");
   const [filter, setFilter] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     console.log("effect (efeito)");
@@ -60,9 +61,7 @@ const App = () => {
           setNewName("");
           setNewNumber("");
 
-          setSuccessMessage(
-            `${personObject.name} foi adicionado com sucesso!`
-          );
+          setSuccessMessage(`${personObject.name} foi adicionado com sucesso!`);
           setTimeout(() => {
             setSuccessMessage(null);
           }, 5000);
@@ -88,17 +87,31 @@ const App = () => {
   const removePerson = (person) => {
     const confirmDelete = window.confirm(`Delete ${person.name}?`);
     if (confirmDelete) {
-      personService.remove(person.id).then(() => {
-        setPersons(persons.filter((p) => p.id !== person.id));
-      });
+      personService
+        .remove(person.id)
+        .then(() => {
+          setPersons(persons.filter((p) => p.id !== person.id));
+          setSuccessMessage(`${person.name} foi removido com sucesso!`);
+          setTimeout(() => {
+            setSuccessMessage(null);
+          }, 5000);
+        })
+        .catch((error) => {
+          setErrorMessage(`Erro ao remover '${person.name}': ${error.message}`);
+          setTimeout(() => {
+            setErrorMessage(null);
+          }, 5000);
+        });
     }
   };
+
 
   return (
     <div>
       <h2>Phonebook</h2>
       <Filter filter={filter} setFilter={setFilter} />
       {successMessage && <Notification message={successMessage} />}
+      {errorMessage && <Notification message={errorMessage} />}
       <h2>Add a new</h2>
       <PersonForm
         addPerson={addPerson}

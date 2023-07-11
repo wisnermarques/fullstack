@@ -35,7 +35,10 @@ const remove = (id) => {
     headers: {
       "Content-Type": "application/json",
     },
-  });
+  })
+    .then((resp) => resp.json())
+    .catch(error => error);
+
   return response;
 };
 
