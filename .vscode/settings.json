@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/6624a143-1ba5-469c-a03a-8ed3479f852d/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/app-api-senac",
+    "appService.deploySubpath": "part3"
+}
